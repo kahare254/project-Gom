@@ -8,35 +8,53 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --background: 45 15% 97%;
+    --foreground: 45 25% 15%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 45 20% 98%;
+    --card-foreground: 45 25% 15%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 45 20% 98%;
+    --popover-foreground: 45 25% 15%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 45 35% 25%;
+    --primary-foreground: 45 15% 95%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 45 15% 92%;
+    --secondary-foreground: 45 25% 15%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 45 15% 92%;
+    --muted-foreground: 45 15% 45%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 42 85% 65%;
+    --accent-foreground: 45 25% 15%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 45 15% 95%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 45 15% 88%;
+    --input: 45 15% 88%;
+    --ring: 42 85% 65%;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
+
+    /* Memorial-specific design tokens */
+    --memorial-glow: 42 85% 65%;
+    --memorial-bridge: 45 25% 35%;
+    --memorial-light: 50 100% 85%;
+    --memorial-shadow: 45 15% 25%;
+    
+    /* Gradients */
+    --gradient-memorial: linear-gradient(135deg, hsl(42 85% 65% / 0.3), hsl(50 100% 85% / 0.5));
+    --gradient-bridge: linear-gradient(180deg, hsl(45 25% 35%), hsl(45 15% 25%));
+    --gradient-ethereal: radial-gradient(circle, hsl(42 85% 65% / 0.4), transparent 70%);
+    
+    /* Shadows */
+    --shadow-memorial: 0 20px 40px -10px hsl(42 85% 65% / 0.3);
+    --shadow-glow: 0 0 50px hsl(42 85% 65% / 0.4);
+    
+    /* Animation */
+    --transition-ethereal: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 
     --sidebar-background: 0 0% 98%;
 
