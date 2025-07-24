@@ -48,20 +48,25 @@ const MemorialCard = () => {
             <h2 className="text-xl font-serif text-gray-800 mb-4">
               of Naomi N.
             </h2>
-            <p className="text-sm text-gray-700 leading-relaxed">
-              Scan with your<br />
-              camera to view<br />
-              the hologram
-            </p>
           </div>
 
-          {/* QR Code */}
-          <div className="flex justify-center">
-            <img 
-              src={qrCode}
-              alt="QR Code"
-              className="w-16 h-16"
-            />
+          {/* Scan Instructions and QR Code */}
+          <div className="flex items-center justify-between">
+            <div className="text-left">
+              <p className="text-sm text-gray-700 leading-relaxed">
+                Scan with your<br />
+                camera to view<br />
+                the hologram
+              </p>
+            </div>
+            
+            <div className="flex justify-center">
+              <img 
+                src={qrCode}
+                alt="QR Code"
+                className="w-16 h-16"
+              />
+            </div>
           </div>
         </div>
 
