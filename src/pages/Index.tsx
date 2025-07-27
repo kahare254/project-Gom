@@ -1,11 +1,16 @@
-import MemorialCard from "@/components/MemorialCard";
+import React from 'react';
+import { GateOfMemoryEnhanced } from '@/components/GateOfMemoryEnhanced';
+import { ErrorBoundary } from '@/components/ErrorBoundary';
+import ViewModeWrapper from '@/components/ViewModeWrapper';
 
-const Index = () => {
+export default function Index() {
   return (
-    <div className="min-h-screen">
-      <MemorialCard />
+    <div className="min-h-screen bg-background">
+      <ErrorBoundary>
+        <ViewModeWrapper>
+          <GateOfMemoryEnhanced />
+        </ViewModeWrapper>
+      </ErrorBoundary>
     </div>
   );
-};
-
-export default Index;
+}

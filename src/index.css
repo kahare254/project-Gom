@@ -2,86 +2,103 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
-
-@layer base {
+/* Reset and base styles */
   :root {
     --background: 45 15% 97%;
     --foreground: 45 25% 15%;
-
     --card: 45 20% 98%;
     --card-foreground: 45 25% 15%;
-
     --popover: 45 20% 98%;
     --popover-foreground: 45 25% 15%;
-
     --primary: 45 35% 25%;
     --primary-foreground: 45 15% 95%;
-
     --secondary: 45 15% 92%;
     --secondary-foreground: 45 25% 15%;
-
     --muted: 45 15% 92%;
     --muted-foreground: 45 15% 45%;
-
     --accent: 42 85% 65%;
     --accent-foreground: 45 25% 15%;
-
     --destructive: 0 84% 60%;
     --destructive-foreground: 45 15% 95%;
-
     --border: 45 15% 88%;
     --input: 45 15% 88%;
     --ring: 42 85% 65%;
-
     --radius: 0.75rem;
+}
 
-    /* Memorial-specific design tokens */
-    --memorial-glow: 42 85% 65%;
-    --memorial-bridge: 45 25% 35%;
-    --memorial-light: 50 100% 85%;
-    --memorial-shadow: 45 15% 25%;
-    
-    /* Gradients */
-    --gradient-memorial: linear-gradient(135deg, hsl(42 85% 65% / 0.3), hsl(50 100% 85% / 0.5));
-    --gradient-bridge: linear-gradient(180deg, hsl(45 25% 35%), hsl(45 15% 25%));
-    --gradient-ethereal: radial-gradient(circle, hsl(42 85% 65% / 0.4), transparent 70%);
-    
-    /* Shadows */
-    --shadow-memorial: 0 20px 40px -10px hsl(42 85% 65% / 0.3);
-    --shadow-glow: 0 0 50px hsl(42 85% 65% / 0.4);
-    
-    /* Animation */
-    --transition-ethereal: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+/* Base element styles */
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+}
 
-    --sidebar-background: 0 0% 98%;
+body {
+  background-color: white;
+  color: black;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 
-    --sidebar-foreground: 240 5.3% 26.1%;
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
 
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+/* Definition of the design system */
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+ 
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+ 
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+ 
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+ 
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+ 
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+ 
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+ 
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+ 
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+ 
+    --ring: 215 20.2% 65.1%;
+ 
+    --radius: 0.5rem;
   }
 
   .dark {
     --background: 222.2 84% 4.9%;
     --foreground: 210 40% 98%;
 
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
 
     --popover: 222.2 84% 4.9%;
     --popover-foreground: 210 40% 98%;
+ 
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+ 
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
 
     --primary: 210 40% 98%;
     --primary-foreground: 222.2 47.4% 11.2%;
@@ -89,26 +106,13 @@ All colors MUST be HSL.
     --secondary: 217.2 32.6% 17.5%;
     --secondary-foreground: 210 40% 98%;
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
     --accent: 217.2 32.6% 17.5%;
     --accent-foreground: 210 40% 98%;
 
     --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --destructive-foreground: 0 85.7% 97.3%;
+ 
+    --ring: 217.2 32.6% 17.5%;
   }
 }
 
@@ -116,8 +120,358 @@ All colors MUST be HSL.
   * {
     @apply border-border;
   }
-
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+/* VR-specific styles */
+.vr-scene {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.vr-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1000;
+}
+
+/* Hologram effects */
+.hologram-glow {
+  animation: glow 2s ease-in-out infinite;
+}
+
+@keyframes glow {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 1; }
+}
+
+/* Loading animations */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+/* Debug outline - uncomment to debug layout issues */
+/* * {
+  outline: 1px solid rgba(255, 0, 0, 0.2);
+} */
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  .vr-controls {
+    font-size: 14px;
+  }
+}
+
+@font-face {
+  font-family: 'Arabic';
+  src: url('/fonts/arabic.ttf') format('truetype');
+}
+
+.font-arabic {
+  font-family: 'Arabic', sans-serif;
+}
+
+/* Memorial Card Styles */
+.memorial-card {
+  background: linear-gradient(145deg, #f0fff4 0%, #e6ffec 100%);
+  box-shadow: 0 8px 32px rgba(0, 100, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.memorial-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(0, 100, 0, 0.15);
+}
+
+.gate-image {
+  border: 2px solid #004d00;
+  box-shadow: 0 4px 12px rgba(0, 77, 0, 0.2);
+}
+
+.qr-code {
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+/* Beamer Mode Styles */
+.beamer-mode .beamer-content {
+  transform-origin: center center;
+}
+
+/* Enhanced Viewer Styles */
+.enhanced-viewer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.mode-selector {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+  background: rgba(255,255,255,0.9);
+  padding: 8px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.mode-selector select {
+  padding: 6px 12px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  background: white;
+}
+
+.loading {
+  padding: 2rem;
+  text-align: center;
+  color: #666;
+}
+
+/* ViewModeWrapper Styles */
+.view-mode-wrapper {
+  position: relative;
+  min-height: 100vh;
+}
+
+.mode-selector {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+  background: rgba(255,255,255,0.9);
+  padding: 8px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.mode-selector select {
+  padding: 6px 12px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  background: white;
+}
+
+.network-alert {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: #ff9800;
+  color: white;
+  padding: 8px;
+  text-align: center;
+  z-index: 1001;
+}
+
+.error-view, .error-boundary {
+  padding: 2rem;
+  background: #ffebee;
+  border-radius: 8px;
+  margin: 1rem;
+  text-align: center;
+}
+
+.loading-spinner {
+  padding: 3rem;
+  text-align: center;
+}
+
+.fallback-note {
+  margin-top: 1rem;
+  font-style: italic;
+}
+
+/* Beamer Frame Styles */
+.beamer-frame-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 2rem;
+}
+
+.beamer-frame.outer-frame {
+  position: relative;
+  padding: 3rem;
+  background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 50%, #1a1a1a 100%);
+  border-radius: 20px;
+  box-shadow: 
+    0 0 0 2px #ffd700,
+    0 0 20px rgba(255, 215, 0, 0.3),
+    0 0 40px rgba(255, 215, 0, 0.1),
+    inset 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.beamer-frame.inner-frame {
+  position: relative;
+  padding: 2rem;
+  background: linear-gradient(135deg, #2d2d2d 0%, #3d3d3d 50%, #2d2d2d 100%);
+  border-radius: 15px;
+  border: 2px solid #ffd700;
+  box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.3);
+}
+
+.beamer-frame.corner-decoration {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border: 3px solid #ffd700;
+  border-radius: 50%;
+  background: radial-gradient(circle, #ffd700 0%, #daa520 50%, #b8860b 100%);
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+.beamer-frame.corner-decoration.top-left {
+  top: -20px;
+  left: -20px;
+}
+
+.beamer-frame.corner-decoration.top-right {
+  top: -20px;
+  right: -20px;
+}
+
+.beamer-frame.corner-decoration.bottom-left {
+  bottom: -20px;
+  left: -20px;
+}
+
+.beamer-frame.corner-decoration.bottom-right {
+  bottom: -20px;
+  right: -20px;
+}
+
+.beamer-content-wrapper {
+  position: relative;
+  z-index: 10;
+}
+
+/* Beamer Simple Frame Styles */
+.beamer-frame-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 2rem;
+}
+
+.beamer-simple-frame {
+  position: relative;
+  padding: 2rem;
+  background: linear-gradient(135deg, #f0fff4 0%, #e6fffa 50%, #f0fff4 100%);
+  border-radius: 15px;
+  border: 3px solid #006400;
+  box-shadow: 
+    0 0 0 1px #004d00,
+    0 8px 32px rgba(0, 100, 0, 0.3),
+    inset 0 0 20px rgba(0, 100, 0, 0.1);
+}
+
+/* Spiritual Reflection Styles */
+.spiritual-reflection-container {
+  min-height: 100vh;
+  padding: 2rem;
+  background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+}
+
+.reflection-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  padding: 2rem;
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.1) 0%, rgba(218, 165, 32, 0.1) 100%);
+  border-radius: 15px;
+  border: 1px solid rgba(255, 215, 0, 0.3);
+}
+
+.reflection-title {
+  color: #ffd700;
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+  font-weight: 300;
+  letter-spacing: 2px;
+}
+
+.reflection-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.reflection-message {
+  color: #e0e0e0;
+  line-height: 1.8;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.reflection-verse {
+  color: #ffd700;
+  font-weight: 300;
+  text-shadow: 0 0 8px rgba(255, 215, 0, 0.4);
+  padding: 1.5rem;
+  background: rgba(255, 215, 0, 0.05);
+  border-radius: 10px;
+  border-left: 4px solid #ffd700;
+}
+
+.reflection-memorial {
+  margin-top: 3rem;
+  display: flex;
+  justify-content: center;
+}
+
+/* Gold color definition */
+.text-gold {
+  color: #ffd700;
+}
+
+/* Responsive adjustments for beamer mode */
+@media (max-width: 768px) {
+  .beamer-frame.outer-frame {
+    padding: 1.5rem;
+  }
+  
+  .beamer-frame.inner-frame {
+    padding: 1rem;
+  }
+  
+  .beamer-frame.corner-decoration {
+    width: 30px;
+    height: 30px;
+  }
+  
+  .reflection-title {
+    font-size: 2rem;
+  }
+  
+  .reflection-message {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .beamer-simple-frame {
+    padding: 1rem;
+  }
+  
+  .reflection-title {
+    font-size: 2rem;
+  }
+  
+  .reflection-message {
+    font-size: 1.1rem;
   }
 }
