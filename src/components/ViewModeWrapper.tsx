@@ -78,6 +78,7 @@ export default function ViewModeWrapper({ children }: ViewModeWrapperProps) {
   // Listen for religion changes to force re-render
   useEffect(() => {
     const handleReligionChange = () => {
+      console.log('Religion changed, forcing re-render');
       setContentKey(prev => prev + 1);
     };
 
@@ -87,6 +88,11 @@ export default function ViewModeWrapper({ children }: ViewModeWrapperProps) {
       window.removeEventListener('religionChanged', handleReligionChange);
     };
   }, []);
+
+  // Force re-render when mode changes
+  useEffect(() => {
+    setContentKey(prev => prev + 1);
+  }, [mode]);
 
   return (
     <div className="view-mode-wrapper">
@@ -99,8 +105,8 @@ export default function ViewModeWrapper({ children }: ViewModeWrapperProps) {
 
       {/* Mode selector */}
       <div className="mode-selector">
-        <select
-          value={mode}
+        <select 
+          value={mode} 
           onChange={(e) => setMode(e.target.value)}
           disabled={networkStatus === 'offline'}
         >
@@ -114,7 +120,7 @@ export default function ViewModeWrapper({ children }: ViewModeWrapperProps) {
 
       {/* Content area */}
       <ErrorBoundary 
-        FallbackComponent={({ error, resetErrorBoundary }: { error: Error; resetErrorBoundary: () => void }) => (
+        FallbackComponent={({ error, resetErrorBoundary }) => (
           <div className="error-boundary">
             <h3>Something went wrong</h3>
             <pre>{error.message}</pre>
@@ -124,7 +130,6 @@ export default function ViewModeWrapper({ children }: ViewModeWrapperProps) {
         )}
       >
         {mode === 'default' && children}
-
         <Suspense fallback={<div className="loading-spinner">Loading...</div>}>
           {mode === 'vr' && <VRIntegration key={`vr-${contentKey}`} originalContent={children} />}
           {mode === 'beamer' && <BeamerMode key={`beamer-${contentKey}`} originalContent={children} />}

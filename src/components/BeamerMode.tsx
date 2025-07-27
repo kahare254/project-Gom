@@ -1,4 +1,4 @@
-import { useState, useEffect, ReactNode } from 'react';
+import React, { useState, useEffect, ReactNode } from 'react';
 
 interface BeamerModeProps {
   originalContent: ReactNode;
@@ -7,25 +7,20 @@ interface BeamerModeProps {
 interface BeamerSettings {
   resolution: '720p' | '1080p' | '4k';
   mode: 'slideshow' | 'reflection';
-  contrast: number;
-}
-
-interface ResolutionConfig {
-  scale: number;
-  quality: number;
+  autoScale: boolean;
 }
 
 const BeamerMode = ({ originalContent }: BeamerModeProps) => {
   const [settings, setSettings] = useState<BeamerSettings>({
     resolution: '1080p',
     mode: 'slideshow',
-    contrast: 1.2
+    autoScale: true
   });
 
-  const resolutions: Record<string, ResolutionConfig> = {
-    '720p': { scale: 1.2, quality: 0.8 },
-    '1080p': { scale: 1.5, quality: 1 },
-    '4k': { scale: 2, quality: 1.2 }
+  const resolutions = {
+    '720p': { width: 1280, height: 720, scale: 0.8 },
+    '1080p': { width: 1920, height: 1080, scale: 1.0 },
+    '4k': { width: 3840, height: 2160, scale: 1.5 }
   };
 
   // Religion-specific spiritual reflection messages
@@ -44,7 +39,6 @@ const BeamerMode = ({ originalContent }: BeamerModeProps) => {
 
   // Get current religion from content
   const getCurrentReligion = () => {
-    // Create a temporary div to check the content
     const tempDiv = document.createElement('div');
     tempDiv.innerHTML = originalContent as string;
     const text = tempDiv.textContent || '';
@@ -60,14 +54,6 @@ const BeamerMode = ({ originalContent }: BeamerModeProps) => {
   const currentReligion = getCurrentReligion();
   const currentMessage = spiritualMessages[currentReligion];
 
-  // Scroll to bottom function
-  const scrollToBottom = () => {
-    window.scrollTo({
-      top: document.documentElement.scrollHeight,
-      behavior: 'smooth'
-    });
-  };
-
   useEffect(() => {
     // Hide religion dropdown in beamer mode
     const style = document.createElement('style');
@@ -79,87 +65,71 @@ const BeamerMode = ({ originalContent }: BeamerModeProps) => {
     document.head.appendChild(style);
     
     return () => {
-      // Cleanup
       document.head.removeChild(style);
     };
   }, []);
 
-  // Listen for religion changes
-  useEffect(() => {
-    const handleReligionChange = (event: CustomEvent) => {
-      // Force re-render when religion changes
-    };
-
-    window.addEventListener('religionChanged', handleReligionChange as EventListener);
-    
-    return () => {
-      window.removeEventListener('religionChanged', handleReligionChange as EventListener);
-    };
-  }, []);
-
   return (
-    <div className="beamer-container min-h-screen">
-      <div className="beamer-controls fixed bottom-5 right-5 z-50 flex gap-2.5 bg-black/70 p-2.5 rounded-lg" style={{ pointerEvents: 'auto' }}>
-        {/* Debug info */}
-        <div className="text-xs text-white px-2 py-1 bg-red-500 rounded">
-          {settings.resolution} | {settings.mode}
+    <div className="beamer-container min-h-screen bg-black">
+      {/* Control Panel */}
+      <div className="beamer-controls fixed bottom-5 left-5 z-[9999] bg-black/80 p-4 rounded-lg text-white">
+        <div className="control-group mb-3">
+          <label className="block text-xs mb-1">Projection Mode:</label>
+          <select
+            value={settings.mode}
+            onChange={(e) => setSettings(prev => ({...prev, mode: e.target.value as BeamerSettings['mode']}))}
+            className="px-3 py-2 bg-gray-700 text-white border rounded text-sm w-full"
+          >
+            <option value="slideshow">Slideshow</option>
+            <option value="reflection">Spiritual Reflection</option>
+          </select>
         </div>
-        
-        <select 
-          value={settings.resolution}
-          onChange={(e) => {
-            console.log('Resolution changed to:', e.target.value);
-            setSettings({...settings, resolution: e.target.value as BeamerSettings['resolution']});
-          }}
-          className="px-3 py-2 bg-gray-700 text-white border-none rounded focus:outline-none focus:ring-2 focus:ring-green-500"
-          style={{ pointerEvents: 'auto', zIndex: 1000 }}
-        >
-          {Object.keys(resolutions).map(res => (
-            <option key={res} value={res}>{res.toUpperCase()}</option>
-          ))}
-        </select>
-        
-        <select 
-          value={settings.mode}
-          onChange={(e) => {
-            console.log('Mode changed to:', e.target.value);
-            setSettings({...settings, mode: e.target.value as BeamerSettings['mode']});
-          }}
-          className="px-3 py-2 bg-gray-700 text-white border-none rounded focus:outline-none focus:ring-2 focus:ring-green-500"
-          style={{ pointerEvents: 'auto', zIndex: 1000 }}
-        >
-          <option value="slideshow">Slideshow</option>
-          <option value="reflection">Spiritual Reflection</option>
-        </select>
 
-        <button
-          onClick={() => {
-            console.log('Scroll button clicked');
-            scrollToBottom();
-          }}
-          className="px-3 py-2 bg-green-600 text-white border-none rounded hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 transition-colors"
-          title="Scroll to Bottom"
-          style={{ pointerEvents: 'auto', zIndex: 1000 }}
-        >
-          ↓
-        </button>
+        <div className="control-group mb-3">
+          <label className="block text-xs mb-1">Resolution:</label>
+          <select
+            value={settings.resolution}
+            onChange={(e) => setSettings(prev => ({...prev, resolution: e.target.value as BeamerSettings['resolution']}))}
+            className="px-3 py-2 bg-gray-700 text-white border rounded text-sm w-full"
+          >
+            <option value="720p">720p</option>
+            <option value="1080p">1080p</option>
+            <option value="4k">4K</option>
+          </select>
+        </div>
+
+        <div className="control-group">
+          <label className="block text-xs mb-1">Auto Scale:</label>
+          <input
+            type="checkbox"
+            checked={settings.autoScale}
+            onChange={(e) => setSettings(prev => ({...prev, autoScale: e.target.checked}))}
+            className="ml-2"
+          />
+        </div>
       </div>
 
+      {/* Projection Content */}
       <div 
-        className="beamer-content w-full max-w-[1920px] mx-auto transition-transform duration-300 ease-in-out"
+        className="beamer-content w-full max-w-[1920px] mx-auto transition-all duration-300 ease-in-out"
         style={{
-          transform: `scale(${resolutions[settings.resolution].scale})`,
-          filter: `contrast(${settings.contrast})`
+          transform: settings.autoScale ? `scale(${resolutions[settings.resolution].scale})` : 'scale(1)',
+          width: settings.autoScale ? `${resolutions[settings.resolution].width}px` : 'auto',
+          height: settings.autoScale ? `${resolutions[settings.resolution].height}px` : 'auto',
+          maxWidth: '100vw',
+          maxHeight: '100vh'
         }}
       >
         {settings.mode === 'slideshow' ? (
-          // Slideshow mode - show complete default view
-          <div className="beamer-frame-container">
-            {originalContent}
+          // Slideshow mode - display the memorial template
+          <div className="beamer-slideshow">
+            <div className="beamer-frame">
+              {originalContent}
+            </div>
           </div>
         ) : (
           // Spiritual reflection mode
-          <div className="spiritual-reflection-container">
+          <div className="beamer-reflection">
             <div className="reflection-header">
               <h1 className="reflection-title text-4xl font-serif text-gold mb-4">
                 {currentMessage.title}
@@ -176,7 +146,7 @@ const BeamerMode = ({ originalContent }: BeamerModeProps) => {
               </div>
               
               <div className="reflection-memorial">
-                <div className="beamer-simple-frame">
+                <div className="beamer-frame">
                   {originalContent}
                 </div>
               </div>

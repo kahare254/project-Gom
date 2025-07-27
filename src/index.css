@@ -475,3 +475,570 @@ body {
     font-size: 1.1rem;
   }
 }
+
+/* Holographic Effects for Beamer Mode */
+.holographic-mode {
+  position: relative;
+  overflow: hidden;
+}
+
+.holographic-mode::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    45deg,
+    transparent 30%,
+    rgba(0, 255, 255, 0.1) 50%,
+    transparent 70%
+  );
+  animation: holographic-scan 3s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.holographic-mode::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(0, 255, 255, 0.05) 0%,
+    transparent 70%
+  );
+  animation: holographic-pulse 4s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+@keyframes holographic-scan {
+  0%, 100% {
+    transform: translateX(-100%);
+  }
+  50% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes holographic-pulse {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.05);
+  }
+}
+
+/* Enhanced Beamer Mode Styles */
+.beamer-mode .beamer-content {
+  transform-origin: center center;
+}
+
+/* Projection-specific styles */
+.beamer-container {
+  background: linear-gradient(135deg, #000 0%, #1a1a1a 100%);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.beamer-content {
+  box-shadow: 0 0 50px rgba(0, 255, 255, 0.2);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+/* Responsive projection scaling */
+@media (max-width: 1280px) {
+  .beamer-content {
+    transform: scale(0.8) !important;
+  }
+}
+
+@media (max-width: 1024px) {
+  .beamer-content {
+    transform: scale(0.6) !important;
+  }
+}
+
+/* Ensure BeamerMode controls are always accessible */
+.beamer-controls {
+  pointer-events: auto !important;
+  z-index: 9999 !important;
+}
+
+.beamer-controls select,
+.beamer-controls button {
+  pointer-events: auto !important;
+  z-index: 10000 !important;
+  position: relative !important;
+}
+
+.beamer-controls select:focus,
+.beamer-controls button:focus {
+  outline: 2px solid #4ade80 !important;
+  outline-offset: 2px !important;
+}
+
+/* Override any conflicting styles */
+.beamer-container .beamer-controls {
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* Ensure all controls work properly */
+.beamer-controls,
+.vr-controls {
+  pointer-events: auto !important;
+  z-index: 9999 !important;
+}
+
+.beamer-controls select,
+.beamer-controls button,
+.vr-controls select,
+.vr-controls button {
+  pointer-events: auto !important;
+  z-index: 10000 !important;
+  position: relative !important;
+  cursor: pointer !important;
+}
+
+.beamer-controls select:focus,
+.beamer-controls button:focus,
+.vr-controls select:focus,
+.vr-controls button:focus {
+  outline: 2px solid #4ade80 !important;
+  outline-offset: 2px !important;
+}
+
+/* VR Mode Styles */
+.vr-container {
+  background: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #1e3a8a 100%);
+}
+
+.vr-content {
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 30px rgba(139, 92, 246, 0.3);
+}
+
+/* QR Code Styles for Spiritual Reflection */
+.reflection-qr {
+  margin-top: 2rem;
+}
+
+.qr-container {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 215, 0, 0.3);
+  border-radius: 15px;
+  padding: 1.5rem;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.qr-code-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem 0;
+}
+
+.qr-code-wrapper img {
+  border: 2px solid rgba(255, 215, 0, 0.5);
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
+}
+
+/* Slideshow Styles for Beamer Mode */
+.slideshow-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background: linear-gradient(135deg, #000 0%, #1a1a1a 100%);
+}
+
+.slide-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.slide-image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 0 30px rgba(0, 255, 255, 0.3);
+  transition: all 0.5s ease-in-out;
+}
+
+.slide-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  padding: 2rem;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.3);
+  max-width: 90%;
+  max-height: 80%;
+  overflow: auto;
+}
+
+.slide-indicator {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 8px 12px;
+  border-radius: 20px;
+  font-size: 14px;
+  z-index: 20;
+}
+
+/* Enhanced Control Panel */
+.control-panel {
+  min-width: 200px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.control-group {
+  margin-bottom: 12px;
+}
+
+.control-group:last-child {
+  margin-bottom: 0;
+}
+
+.control-group label {
+  color: #ccc;
+  font-weight: 500;
+}
+
+.control-group select,
+.control-group button {
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.control-group select:focus,
+.control-group button:focus {
+  outline: 2px solid #4ade80;
+  outline-offset: 2px;
+}
+
+.control-group select:hover,
+.control-group button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Ensure all controls are clickable */
+.control-panel * {
+  pointer-events: auto !important;
+}
+
+.control-panel select,
+.control-panel button {
+  z-index: 10001 !important;
+  position: relative !important;
+}
+
+/* Slideshow container improvements */
+.slideshow-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background: linear-gradient(135deg, #000 0%, #1a1a1a 100%);
+  transition: all 0.3s ease-in-out;
+}
+
+.slide-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.slide-image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 0 30px rgba(0, 255, 255, 0.3);
+  transition: all 0.5s ease-in-out;
+}
+
+.slide-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  padding: 2rem;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.3);
+  max-width: 90%;
+  max-height: 80%;
+  overflow: auto;
+}
+
+.slide-indicator {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 8px 12px;
+  border-radius: 20px;
+  font-size: 14px;
+  z-index: 20;
+}
+
+/* Slide Transitions */
+.slide-content {
+  animation: slideFadeIn 0.5s ease-in-out;
+}
+
+@keyframes slideFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Responsive adjustments for slideshow */
+@media (max-width: 768px) {
+  .slide-overlay {
+    padding: 1rem;
+    max-width: 95%;
+    max-height: 85%;
+  }
+  
+  .control-panel {
+    min-width: 180px;
+    padding: 12px;
+  }
+  
+  .slideshow-controls {
+    flex-direction: column;
+    gap: 4px;
+  }
+  
+  .slideshow-controls .flex {
+    justify-content: center;
+  }
+}
+
+/* BeamerMode Styles */
+.beamer-container {
+  background: linear-gradient(135deg, #000 0%, #1a1a1a 100%);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.beamer-controls {
+  min-width: 200px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.beamer-controls * {
+  pointer-events: auto !important;
+}
+
+.beamer-controls select,
+.beamer-controls input {
+  z-index: 10001 !important;
+  position: relative !important;
+}
+
+.control-group {
+  margin-bottom: 12px;
+}
+
+.control-group:last-child {
+  margin-bottom: 0;
+}
+
+.control-group label {
+  color: #ccc;
+  font-weight: 500;
+}
+
+.control-group select,
+.control-group input {
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.control-group select:focus,
+.control-group input:focus {
+  outline: 2px solid #4ade80;
+  outline-offset: 2px;
+}
+
+.beamer-content {
+  box-shadow: 0 0 50px rgba(0, 255, 255, 0.2);
+  border-radius: 10px;
+  overflow: hidden;
+  background: white;
+}
+
+.beamer-slideshow {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.beamer-frame {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.beamer-reflection {
+  width: 100%;
+  height: 100%;
+  padding: 2rem;
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+  color: white;
+  overflow-y: auto;
+}
+
+.reflection-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.reflection-title {
+  color: #ffd700;
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.reflection-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.reflection-message {
+  line-height: 1.8;
+  margin-bottom: 2rem;
+}
+
+.reflection-verse {
+  color: #ffd700;
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+.reflection-memorial {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.reflection-memorial .beamer-frame {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
+  max-width: 600px;
+  max-height: 400px;
+  overflow: hidden;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1280px) {
+  .beamer-content {
+    transform: scale(0.8) !important;
+  }
+}
+
+@media (max-width: 1024px) {
+  .beamer-content {
+    transform: scale(0.6) !important;
+  }
+  
+  .beamer-controls {
+    min-width: 180px;
+    padding: 12px;
+  }
+}
+
+@media (max-width: 768px) {
+  .beamer-content {
+    transform: scale(0.4) !important;
+  }
+  
+  .reflection-title {
+    font-size: 2rem;
+  }
+  
+  .reflection-message {
+    font-size: 1rem;
+  }
+}
+
+/* 4K Resolution Support */
+@media (min-width: 2560px) {
+  .beamer-content {
+    transform: scale(1.2) !important;
+  }
+  
+  .reflection-title {
+    font-size: 4rem;
+  }
+  
+  .reflection-message {
+    font-size: 1.5rem;
+  }
+  
+  .reflection-verse {
+    font-size: 1.4rem;
+  }
+}
+
+
+
