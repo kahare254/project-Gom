@@ -3,27 +3,27 @@
 @tailwind utilities;
 
 /* Reset and base styles */
-  :root {
-    --background: 45 15% 97%;
-    --foreground: 45 25% 15%;
-    --card: 45 20% 98%;
-    --card-foreground: 45 25% 15%;
-    --popover: 45 20% 98%;
-    --popover-foreground: 45 25% 15%;
-    --primary: 45 35% 25%;
-    --primary-foreground: 45 15% 95%;
-    --secondary: 45 15% 92%;
-    --secondary-foreground: 45 25% 15%;
-    --muted: 45 15% 92%;
-    --muted-foreground: 45 15% 45%;
-    --accent: 42 85% 65%;
-    --accent-foreground: 45 25% 15%;
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 45 15% 95%;
-    --border: 45 15% 88%;
-    --input: 45 15% 88%;
-    --ring: 42 85% 65%;
-    --radius: 0.75rem;
+:root {
+  --background: 45 15% 97%;
+  --foreground: 45 25% 15%;
+  --card: 45 20% 98%;
+  --card-foreground: 45 25% 15%;
+  --popover: 45 20% 98%;
+  --popover-foreground: 45 25% 15%;
+  --primary: 45 35% 25%;
+  --primary-foreground: 45 15% 95%;
+  --secondary: 45 15% 92%;
+  --secondary-foreground: 45 25% 15%;
+  --muted: 45 15% 92%;
+  --muted-foreground: 45 15% 45%;
+  --accent: 42 85% 65%;
+  --accent-foreground: 45 25% 15%;
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 45 15% 95%;
+  --border: 45 15% 88%;
+  --input: 45 15% 88%;
+  --ring: 42 85% 65%;
+  --radius: 0.75rem;
 }
 
 /* Base element styles */
@@ -31,97 +31,105 @@ html, body {
   margin: 0;
   padding: 0;
   width: 100%;
-  height: 100%;
+  min-height: 100%;
   overflow-x: hidden;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
   background-color: white;
   color: black;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.5;
+  font-size: 16px;
 }
 
+/* Responsive base font size */
+@media screen and (max-width: 768px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  html {
+    font-size: 13px;
+  }
+}
+
+/* Touch-friendly elements */
+a, button, input, textarea, select, label {
+  touch-action: manipulation;
+}
+
+button, [role="button"], input[type="submit"], input[type="button"] {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+/* Prevent zoom on input focus on mobile */
+@media screen and (max-width: 768px) {
+  input, select, textarea {
+    font-size: 16px !important;
+  }
+}
+
+/* Layout adjustments */
 #root {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  width: 100%;
+  overflow: hidden;
 }
 
-/* Definition of the design system */
-@layer base {
-  :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
- 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
- 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
- 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
- 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
- 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
- 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
- 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
- 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
- 
-    --ring: 215 20.2% 65.1%;
- 
-    --radius: 0.5rem;
-  }
-
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
- 
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
- 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 85.7% 97.3%;
- 
-    --ring: 217.2 32.6% 17.5%;
-  }
+/* Responsive typography */
+h1, h2, h3, h4, h5, h6 {
+  word-wrap: break-word;
 }
 
-@layer base {
-  * {
-    @apply border-border;
-  }
-  body {
-    @apply bg-background text-foreground;
+/* Images and media */
+img, video, canvas {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Form elements */
+input, button, textarea, select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border-radius: var(--radius);
+}
+
+/* Remove default touch highlight */
+* {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+/* Prevent text overflow */
+p, h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  -ms-word-break: break-all;
+  word-break: break-word;
+  hyphens: auto;
+}
+
+/* Responsive iframes */
+iframe {
+  max-width: 100%;
+}
+
+/* Smooth scrolling for mobile */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
   }
 }
 
@@ -542,9 +550,58 @@ body {
   transform-origin: center center;
 }
 
+/* Force all text in Beamer components to be black */
+.beamer-container,
+.beamer-container *,
+.beamer-content,
+.beamer-content *,
+.beamer-mode,
+.beamer-mode * {
+  color: black !important;
+}
+
+/* Override specific Tailwind text color classes in Beamer mode */
+.beamer-container .text-white,
+.beamer-container .text-yellow-300,
+.beamer-container .text-blue-300,
+.beamer-container .text-white\/70,
+.beamer-content .text-white,
+.beamer-content .text-yellow-300,
+.beamer-content .text-blue-300,
+.beamer-content .text-white\/70 {
+  color: black !important;
+}
+
+/* Ensure slide content text is black */
+.beamer-container .text-6xl,
+.beamer-container .text-8xl,
+.beamer-container .text-4xl,
+.beamer-container .text-2xl,
+.beamer-container .text-3xl,
+.beamer-container .text-lg,
+.beamer-container .text-xl,
+.beamer-container .text-xs {
+  color: black !important;
+}
+
+/* Force VR Beamer Integration text to be black */
+.vr-beamer-integration,
+.vr-beamer-integration *,
+.vr-controls,
+.vr-controls * {
+  color: black !important;
+}
+
+/* Override inline styles in VR/Beamer components */
+[style*="color: white"],
+[style*="color: #fff"],
+[style*="color: rgba(255,255,255"] {
+  color: black !important;
+}
+
 /* Projection-specific styles */
 .beamer-container {
-  background: linear-gradient(135deg, #000 0%, #1a1a1a 100%);
+  background: linear-gradient(135deg, #e8f5e8 0%, #d4f0d4 50%, #c8e6c8 100%);
   min-height: 100vh;
   display: flex;
   align-items: center;
@@ -666,114 +723,6 @@ body {
   height: 100vh;
   overflow: hidden;
   background: linear-gradient(135deg, #000 0%, #1a1a1a 100%);
-}
-
-.slide-content {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.slide-image {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: cover;
-  border-radius: 10px;
-  box-shadow: 0 0 30px rgba(0, 255, 255, 0.3);
-  transition: all 0.5s ease-in-out;
-}
-
-.slide-overlay {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 10;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-  border-radius: 15px;
-  padding: 2rem;
-  box-shadow: 0 0 40px rgba(0, 0, 0, 0.3);
-  max-width: 90%;
-  max-height: 80%;
-  overflow: auto;
-}
-
-.slide-indicator {
-  position: absolute;
-  bottom: 20px;
-  right: 20px;
-  background: rgba(0, 0, 0, 0.7);
-  color: white;
-  padding: 8px 12px;
-  border-radius: 20px;
-  font-size: 14px;
-  z-index: 20;
-}
-
-/* Enhanced Control Panel */
-.control-panel {
-  min-width: 200px;
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-}
-
-.control-group {
-  margin-bottom: 12px;
-}
-
-.control-group:last-child {
-  margin-bottom: 0;
-}
-
-.control-group label {
-  color: #ccc;
-  font-weight: 500;
-}
-
-.control-group select,
-.control-group button {
-  transition: all 0.2s ease;
-  cursor: pointer;
-}
-
-.control-group select:focus,
-.control-group button:focus {
-  outline: 2px solid #4ade80;
-  outline-offset: 2px;
-}
-
-.control-group select:hover,
-.control-group button:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-}
-
-/* Ensure all controls are clickable */
-.control-panel * {
-  pointer-events: auto !important;
-}
-
-.control-panel select,
-.control-panel button {
-  z-index: 10001 !important;
-  position: relative !important;
-}
-
-/* Slideshow container improvements */
-.slideshow-container {
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  overflow: hidden;
-  background: linear-gradient(135deg, #000 0%, #1a1a1a 100%);
-  transition: all 0.3s ease-in-out;
 }
 
 .slide-content {
@@ -1039,6 +988,3 @@ body {
     font-size: 1.4rem;
   }
 }
-
-
-

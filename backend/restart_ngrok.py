@@ -18,13 +18,13 @@ def kill_ngrok():
 def get_ngrok_url():
     """Get the public URL from ngrok API"""
     try:
-        response = requests.get("http://localhost:4040/api/tunnels")
+        response = requests.get("http://127.0.0.1:4040/api/tunnels")
         tunnels = response.json()['tunnels']
         for tunnel in tunnels:
             if tunnel['proto'] == 'https':
                 return tunnel['public_url']
-    except:
-        return None
+    except Exception as e:
+        print(f"Error getting ngrok URL: {e}")
     return None
 
 def main():

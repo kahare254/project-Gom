@@ -1,0 +1,9 @@
+import './beamermode.css';
+
+.beamermode * {
+  color: #000 !important;
+}
+
+<div className={beamermode ? "beamermode" : ""}>
+  {/* your app content */}
+</div>
